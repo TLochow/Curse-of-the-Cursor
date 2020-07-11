@@ -29,4 +29,5 @@ func _on_Door_body_entered(body):
 		$Torch.LightTorch()
 		$Torch2.LightTorch()
 		emit_signal("StartOpening", get_position())
+		$Open.play()
 		$AnimationPlayer.play("Open")
