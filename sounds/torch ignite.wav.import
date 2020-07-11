@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/torch ignite.wav-78d726afac7ee3cba131e6613d59a266.sample"
+
+[deps]
+
+source_file="res://sounds/torch ignite.wav"
+dest_files=[ "res://.import/torch ignite.wav-78d726afac7ee3cba131e6613d59a266.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
