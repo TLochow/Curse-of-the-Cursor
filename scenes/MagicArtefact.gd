@@ -38,12 +38,14 @@ func _process(delta):
 		if Shake > 10.0:
 			Shake = 0.0
 			Phase = "Stop"
+			$Mysterious.stop()
 	elif Phase == "Stop":
 		Shake += delta
 		if Shake > 2.0:
 			Phase = "Absorb"
 			StartPos = get_position()
 			StartDistance = (Player.get_position() - StartPos).length()
+			$Woosh.play()
 	elif Phase == "Absorb":
 		var pos = get_position()
 		var playerPos = Player.get_position()

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mysterious.ogg-40c95dc5eca31dba3a8ad86b5f792975.oggstr"
+
+[deps]
+
+source_file="res://sounds/mysterious.ogg"
+dest_files=[ "res://.import/mysterious.ogg-40c95dc5eca31dba3a8ad86b5f792975.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
