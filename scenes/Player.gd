@@ -3,6 +3,8 @@ extends KinematicBody2D
 var Active = false
 onready var InActivePos = get_position()
 
+onready var PushCast = $PushCast
+
 export(bool) var MouseControl
 
 var Motion = Vector2(0.0, 0.0)
@@ -85,3 +87,16 @@ func Deactivate(pos):
 func Blackout(pos):
 	$Tween.interpolate_property($Sprite, "modulate", Color(1.0, 1.0, 1.0, 1.0), Color(0.0, 0.0, 0.0, 1.0), 0.8, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.start()
+
+func Push(pushTo):
+	PushCast.cast_to = pushTo
+	PushCast.force_raycast_update()
+	var pushable = false
+	if not PushCast.is_colliding():
+		pushable = true
+		set_position(get_position() + pushTo)
+	return pushable
+
+func Crush():
+	$Crush.play()
+	Global.LoadLevel()

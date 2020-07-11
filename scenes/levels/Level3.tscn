@@ -19,9 +19,6 @@ Entry = true
 [node name="Exit" parent="." instance=ExtResource( 1 )]
 position = Vector2( 464, 80 )
 
-[node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 48, 264 )
-
 [node name="Torches" type="Node2D" parent="."]
 
 [node name="Torch" parent="Torches" instance=ExtResource( 4 )]
@@ -47,6 +44,9 @@ position = Vector2( 48, 128 )
 
 [node name="Torch9" parent="Torches" instance=ExtResource( 4 )]
 position = Vector2( 216, 96 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 48, 264 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false

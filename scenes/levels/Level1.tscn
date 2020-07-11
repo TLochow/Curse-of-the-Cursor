@@ -33,9 +33,6 @@ Entry = true
 [node name="Exit" parent="." instance=ExtResource( 1 )]
 position = Vector2( 464, 256 )
 
-[node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 48, 264 )
-
 [node name="Torches" type="Node2D" parent="."]
 
 [node name="Torch" parent="Torches" instance=ExtResource( 4 )]
@@ -46,6 +43,9 @@ position = Vector2( 256, 250 )
 
 [node name="Torch4" parent="Torches" instance=ExtResource( 4 )]
 position = Vector2( 348, 250 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 48, 264 )
 
 [node name="TitleTorches" type="Node2D" parent="."]
 script = ExtResource( 7 )

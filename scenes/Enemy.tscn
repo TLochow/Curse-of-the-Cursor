@@ -1,0 +1,84 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scenes/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://sprites/enemy eye.png" type="Texture" id=2]
+[ext_resource path="res://sprites/enemy.png" type="Texture" id=3]
+[ext_resource path="res://sounds/bang.wav" type="AudioStream" id=4]
+[ext_resource path="res://sounds/grind.wav" type="AudioStream" id=5]
+[ext_resource path="res://sounds/beam.wav" type="AudioStream" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 14, 14 )
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.511111, 1 )
+colors = PoolColorArray( 0.294118, 0.12549, 0, 1, 0.294118, 0.12549, 0, 1, 0.294118, 0.12549, 0, 0 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 2
+emission_box_extents = Vector3( 14, 14, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, 30, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 4.0
+color_ramp = SubResource( 3 )
+
+[node name="Enemy" type="KinematicBody2D"]
+z_index = 1
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
+z_index = -1
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Eye" type="Sprite" parent="."]
+position = Vector2( 0, -2 )
+scale = Vector2( 1.5, 1.5 )
+z_index = -1
+texture = ExtResource( 2 )
+
+[node name="LeftCast" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( -32, 0 )
+collision_mask = 2
+
+[node name="RightCast" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 32, 0 )
+collision_mask = 2
+
+[node name="MouseCast" type="RayCast2D" parent="."]
+position = Vector2( 0, -2 )
+enabled = true
+collision_mask = 2
+
+[node name="Grind" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="Bang" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="Beam" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="MoveParticles" type="Particles2D" parent="."]
+emitting = false
+amount = 32
+local_coords = false
+process_material = SubResource( 4 )
+
+[node name="StopParticles" type="Particles2D" parent="."]
+emitting = false
+amount = 64
+one_shot = true
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 4 )
