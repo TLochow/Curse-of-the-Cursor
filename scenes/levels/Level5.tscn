@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/Door.tscn" type="PackedScene" id=1]
 [ext_resource path="res://TileMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Torch.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Level.gd" type="Script" id=5]
+[ext_resource path="res://ARCADE_N.TTF" type="DynamicFontData" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 6
+font_data = ExtResource( 6 )
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 5 )
@@ -38,6 +43,37 @@ position = Vector2( 104, 136 )
 
 [node name="Torch6" parent="Torches" instance=ExtResource( 4 )]
 position = Vector2( 408, 96 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control"]
+margin_left = 88.0
+margin_top = 216.0
+margin_right = 238.0
+margin_bottom = 233.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.560784, 0.337255, 0.231373, 1 )
+text = "The further your mouse is
+away the faster you move."
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="Control"]
+margin_left = 24.0
+margin_top = 104.0
+margin_right = 174.0
+margin_bottom = 121.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.560784, 0.337255, 0.231373, 1 )
+text = "With high speeds you can
+make very long jumps."
+align = 1
+valign = 1
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 48, 264 )

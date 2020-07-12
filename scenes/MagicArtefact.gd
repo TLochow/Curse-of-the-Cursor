@@ -16,7 +16,7 @@ func _on_MagicArtefact_body_entered(body):
 	if body.is_in_group("Player"):
 		Phase = "Liftoff"
 		Player = body
-		body.Deactivate(body.get_position())
+		body.Deactivate(body.get_position() + Vector2(10.0, 0.0))
 		$Light2D.enabled = true
 		$Tween.interpolate_property($Light2D, "energy", 0.0, 10.0, 5.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$Tween.start()

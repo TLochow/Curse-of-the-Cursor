@@ -34,7 +34,7 @@ position = Vector2( 136, 216 )
 position = Vector2( 216, 216 )
 
 [node name="Torch3" parent="Torches" instance=ExtResource( 4 )]
-position = Vector2( 336, 216 )
+position = Vector2( 288, 216 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 64, 232 )

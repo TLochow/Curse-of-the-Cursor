@@ -35,13 +35,6 @@ position = Vector2( 256, 152 )
 [node name="Torch4" parent="Torches" instance=ExtResource( 4 )]
 position = Vector2( 352, 184 )
 
-[node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 56, 104 )
-
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
-color = Color( 0, 0, 0, 1 )
-
 [node name="Control" type="Control" parent="."]
 margin_left = 32.0
 margin_top = 32.0
@@ -69,4 +62,11 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 56, 104 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color( 0, 0, 0, 1 )
 [connection signal="Opened" from="Exit" to="." method="_on_Exit_Opened"]
