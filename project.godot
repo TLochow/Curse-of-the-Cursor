@@ -23,6 +23,7 @@ config/icon="res://icon.png"
 
 SceneChanger="*res://SceneChanger.tscn"
 Global="*res://Global.gd"
+MusicPlayer="*res://MusicPlayer.tscn"
 
 [display]
 

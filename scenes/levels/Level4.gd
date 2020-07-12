@@ -6,7 +6,11 @@ onready var Player = get_tree().get_nodes_in_group("Player")[0]
 
 var Phase = "FollowPlayer"
 
+var MusicStop = true
+
 func _ready():
+	$Tween.interpolate_method(MusicPlayer, "SetVolume", 0.0, -80.0, 4.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.start()
 	$MagicArtefact.connect("Absorbed", self, "ArtefactAbsorbed")
 
 func _process(delta):
@@ -56,3 +60,9 @@ func _on_Tween_tween_all_completed():
 		Phase = "WaitForPlayerInput2"
 	elif Phase == "CantMove":
 		Phase = "WaitForPlayerInput3"
+
+func _on_MusicRestartArea_body_entered(body):
+	if MusicStop:
+		MusicStop = false
+		$Tween.interpolate_method(MusicPlayer, "SetVolume", -80.0, 0.0, 2.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$Tween.start()

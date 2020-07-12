@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/levels/Level4.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Level.gd" type="Script" id=2]
@@ -12,6 +12,9 @@
 [sub_resource type="DynamicFont" id=1]
 size = 6
 font_data = ExtResource( 8 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 24, 38 )
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 2 )
@@ -160,6 +163,15 @@ one_shot = true
 
 [node name="Tween2" type="Tween" parent="Level4"]
 
+[node name="MusicRestartArea" type="Area2D" parent="Level4"]
+position = Vector2( 1136, 200 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level4/MusicRestartArea"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="Entry" parent="." instance=ExtResource( 5 )]
 position = Vector2( 56, 224 )
 Entry = true
@@ -176,4 +188,5 @@ color = Color( 0, 0, 0, 1 )
 [connection signal="timeout" from="Level4/Timer" to="Level4" method="_on_Timer_timeout"]
 [connection signal="tween_all_completed" from="Level4/Tween" to="Level4" method="_on_Tween_tween_all_completed"]
 [connection signal="tween_all_completed" from="Level4/Tween2" to="Level4" method="_on_Tween_tween_all_completed"]
+[connection signal="body_entered" from="Level4/MusicRestartArea" to="Level4" method="_on_MusicRestartArea_body_entered"]
 [connection signal="Opened" from="Exit" to="." method="_on_Exit_Opened"]

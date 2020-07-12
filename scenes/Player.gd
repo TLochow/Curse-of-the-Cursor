@@ -33,7 +33,7 @@ func _physics_process(delta):
 				coyoteTime = 0.0
 				isOnFloor = false
 				Motion.y = -250.0
-			
+				$Jump.play()
 			var mousePos = .get_global_mouse_position()
 			var distanceToMouse = mousePos.x - pos.x
 			Motion.x = lerp(Motion.x, distanceToMouse, delta * 10.0)
@@ -45,6 +45,7 @@ func _physics_process(delta):
 				xMove += 100.0
 			if Input.is_action_just_pressed("ui_up") and coyoteTime > 0.0:
 				Motion.y = -250.0
+				$Jump.play()
 			
 			Motion.x = xMove
 	else:
