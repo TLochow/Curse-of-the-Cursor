@@ -8,17 +8,19 @@ onready var Beam = $Beam
 
 var Moving = false
 var MoveLeft = false
-var TimeTillMove = 0.0
+export(float) var TimeTillMove = 0.0
 
 var GrappingMouse = false
 var MouseInView = 0.0
 var Pos = Vector2(0.0, 0.0)
 var MousePos = Vector2(0.0, 0.0)
+var CollisionPoint = Vector2(0.0, 0.0)
 
 var Motion = Vector2(0.0, 0.0)
 
 func _ready():
-	TimeTillMove = rand_range(5.0, 15.0)
+	if TimeTillMove <= 0.0:
+		TimeTillMove = rand_range(5.0, 10.0)
 	if MoveUpAndDown:
 		$LeftCast.cast_to = Vector2(0.0, -32.0)
 		$RightCast.cast_to = Vector2(0.0, 32.0)
@@ -33,10 +35,11 @@ func _physics_process(delta):
 	if MouseCast.is_colliding():
 		GrappingMouse = false
 		MouseInView = 0.0
+		CollisionPoint = MouseCast.get_collision_point()
 		if Beam.playing:
 			Beam.stop()
 	elif GrappingMouse:
-		get_viewport().warp_mouse(to_global(directionToMouse * 0.9))
+		get_viewport().warp_mouse(MousePos - (directionToMouse * 0.1))
 	else:
 		MouseInView += delta
 		if MouseInView > 1.0:
@@ -64,7 +67,7 @@ func _physics_process(delta):
 			if stop:
 				Motion = Vector2(0.0, 0.0)
 				Moving = false
-				TimeTillMove = rand_range(5.0, 15.0)
+				TimeTillMove = rand_range(5.0, 10.0)
 				$Grind.stop()
 				$Bang.play()
 				$MoveParticles.emitting = false
@@ -86,3 +89,7 @@ func _physics_process(delta):
 func _draw():
 	if GrappingMouse:
 		draw_line(Vector2(0.0, -2.0), to_local(MousePos), Color(1.0, 0.0, 0.0, 1.0), 3.0, true)
+	elif MouseInView > 0.0:
+		draw_line(Vector2(0.0, -2.0), to_local(MousePos), Color(1.0, 0.0, 0.0, 0.3), 3.0, true)
+	else:
+		draw_line(Vector2(0.0, -2.0), to_local(CollisionPoint), Color(0.875, 0.443, 0.149, 0.1), 3.0, true)
