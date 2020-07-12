@@ -1,5 +1,7 @@
 extends Node
 
+var ScreenShake = 0.0
+
 var Level = 1
 
 func LoadLevel():

@@ -3,8 +3,11 @@ extends Node2D
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		SceneChanger.EndGame()
+	elif event.is_action_pressed("restart"):
+		Global.LoadLevel()
 
 func _ready():
+	Global.ScreenShake = 0.0
 	$CanvasModulate.visible = true
 	$Entry.connect("Closed", $Player, "Activate")
 	$Exit.connect("StartOpening", $Player, "Deactivate")

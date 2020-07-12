@@ -5,6 +5,7 @@ export(bool) var MoveUpAndDown = false
 onready var Eye = $Eye
 onready var MouseCast = $MouseCast
 onready var Beam = $Beam
+onready var Grind = $Grind
 
 var Moving = false
 var MoveLeft = false
@@ -68,22 +69,27 @@ func _physics_process(delta):
 				Motion = Vector2(0.0, 0.0)
 				Moving = false
 				TimeTillMove = rand_range(5.0, 10.0)
-				$Grind.stop()
 				$Bang.play()
 				$MoveParticles.emitting = false
 				$StopParticles.emitting = true
+				Global.ScreenShake = 10.0
 				if body.has_method("Crush"):
 					body.Crush()
 	elif TimeTillMove < 0.0:
-		Moving = true
 		var leftFree = not $LeftCast.is_colliding()
 		var rightFree = not $RightCast.is_colliding()
-		if leftFree == rightFree:
-			MoveLeft = randi() % 2 == 0
+		if leftFree or rightFree:
+			Moving = true
+			if leftFree and rightFree:
+				MoveLeft = randi() % 2 == 0
+			else:
+				MoveLeft = leftFree
+			Grind.play()
+			$MoveParticles.emitting = true
 		else:
-			MoveLeft = leftFree
-		$Grind.play()
-		$MoveParticles.emitting = true
+			TimeTillMove = rand_range(5.0, 10.0)
+	elif Grind.playing:
+		Grind.stop()
 	update()
 
 func _draw():
